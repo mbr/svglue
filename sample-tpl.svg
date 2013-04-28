@@ -43,7 +43,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -78,16 +78,18 @@
        ry="120.63964" />
     <text
        xml:space="preserve"
-       style="font-size:98.45034026999999810px;font-style:normal;font-variant:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Linux Libertine;-inkscape-font-specification:Linux Libertine Book;opacity:0.8"
+       style="font-size:98.45034027px;font-style:normal;font-variant:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;opacity:0.8;fill:#000000;fill-opacity:1;stroke:none;font-family:Linux Libertine;-inkscape-font-specification:Linux Libertine Book"
        x="82.627792"
        y="514.29596"
        id="text2991"
-       sodipodi:linespacing="125%"
-       template-id="sample-text"><tspan
+       sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan2993"
          x="82.627792"
-         y="514.29596">This is Text.</tspan></text>
+         y="514.29596"
+         template-id="sample-text">This <tspan
+   style="font-weight:bold"
+   id="tspan3212">is</tspan> Text.</tspan></text>
     <rect
        style="color:#000000;fill:#ff00ff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:0.40807178000000000;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate;opacity:0.8"
        id="rect2995"
