@@ -63,7 +63,15 @@ class Template(object):
     def set_text(self, tid, text):
         self._tspan_subs[tid].text = text
 
-    def set_image(self, tid, href):
+    def set_image(self, tid, src=None, file=None, mimetype=None):
+        if not (src == None) ^ (file == None):
+            raise RuntimeError('Must specify exactly one of src or '
+                               'file argument')
+
+        if not mimetype and (not file or hasattr(file, 'read')):
+            raise RuntimeError('Must specify mimetype when not linking ',
+                               'an image')
+
         elem = self._rect_subs[tid]
         elem.tag = IMAGE_TAG
 
@@ -72,8 +80,19 @@ class Template(object):
             if not attr in ALLOWED_ATTRS:
                 del elem.attrib[attr]
 
-        elem.set(HREF_ATTR, href)
         elem.set('preserveAspectRatio', 'none')
+
+        # embed?
+        if not mimetype:
+            elem.set(HREF_ATTR, file)
+        else:
+            if not src:
+                if not hasattr(file, 'read'):
+                    file = open(file, 'r')
+                src = file.read()
+            elem.set(HREF_ATTR, 'data:%s;base64,%s' % (
+                mimetype, src.encode('base64')
+            ))
 
     def set_svg(self, tid, src=None, file=None):
         if not (src == None) ^ (file == None):
