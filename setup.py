@@ -13,7 +13,8 @@ def read(fname):
 setup(
     name='svglue',
     version='0.1dev',
-    description='',
+    description='Create templates using Inkscape, then fill them in (and '
+                'render them to PDF, if you like).',
     long_description=read('README.rst'),
     author='Marc Brinkmann',
     author_email='git@marcbrinkmann.de',
