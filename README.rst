@@ -58,6 +58,12 @@ renders the tiger scaled incorrectly. For now, you can use a different renderer
 for better results until that bug is fixed.
 
 
+Installation
+------------
+``svglue`` is `available via PyPI <https://pypi.python.org/pypi/svglue/>`_, so
+a simple ``pip install svglue`` should suffice to install.
+
+
 API reference
 -------------
 
