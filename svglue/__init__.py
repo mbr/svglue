@@ -103,7 +103,7 @@ class Template(object):
                                'file argument')
 
         if src:
-            doc = etree.fromstring(src)
+            doc = etree.fromstring(str(src))
         else:
             doc = etree.parse(file)
 
