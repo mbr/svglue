@@ -4,6 +4,13 @@
 from lxml import etree
 
 
+RECT_TAG = '{http://www.w3.org/2000/svg}rect'
+TSPAN_TAG = '{http://www.w3.org/2000/svg}tspan'
+IMAGE_TAG = '{http://www.w3.org/2000/svg}image'
+IMAGE_HREF = '{http://www.w3.org/1999/xlink}href'
+VALID_NS = ('',)
+
+
 class TemplateParseError(Exception):
     pass
 
@@ -27,11 +34,12 @@ class Template(object):
             if not tid:
                 continue
 
-            if elem.tag == '{http://www.w3.org/2000/svg}rect':
-                self._rect_subs[tid] = (elem.get('width'), elem.get('height'),
-                                        elem.get('x'), elem.get('y'))
-                elem.getparent().remove(elem)
-            elif elem.tag == '{http://www.w3.org/2000/svg}tspan':
+            # FIXME: use own namespace?
+            del elem.attrib['template-id']
+
+            if elem.tag == RECT_TAG:
+                self._rect_subs[tid] = elem
+            elif elem.tag == TSPAN_TAG:
                 self._tspan_subs[tid] = elem
             else:
                 raise TemplateParseError(
@@ -41,6 +49,18 @@ class Template(object):
 
     def set_text(self, tid, text):
         self._tspan_subs[tid].text = text
+
+    def set_image(self, tid, href):
+        elem = self._rect_subs[tid]
+        elem.tag = IMAGE_TAG
+
+        ALLOWED_ATTRS = ('x', 'y', 'width', 'height', 'style')
+        for attr in elem.attrib.keys():
+            if not attr in ALLOWED_ATTRS:
+                del elem.attrib[attr]
+
+        elem.set(IMAGE_HREF, href)
+
 
     def __str__(self):
         return etree.tostring(self._doc)
