@@ -8,7 +8,6 @@ RECT_TAG = '{http://www.w3.org/2000/svg}rect'
 TSPAN_TAG = '{http://www.w3.org/2000/svg}tspan'
 IMAGE_TAG = '{http://www.w3.org/2000/svg}image'
 IMAGE_HREF = '{http://www.w3.org/1999/xlink}href'
-VALID_NS = ('',)
 
 
 class TemplateParseError(Exception):
