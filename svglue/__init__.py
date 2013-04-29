@@ -20,12 +20,15 @@ class TemplateParseError(Exception):
 
 class Template(object):
     @classmethod
-    def from_string(self, s):
-        return cls(etree.fromstring(s))
+    def load(cls, src=None, file=None):
+        if not (src == None) ^ (file == None):
+            raise RuntimeError('Must specify exactly one of src or '
+                               'file argument')
 
-    @classmethod
-    def load(cls, fn):
-        return cls(etree.parse(fn))
+        if src:
+            return cls(etree.fromstring(src))
+
+        return cls(etree.parse(file))
 
     def __init__(self, doc):
         self._doc = doc
@@ -123,4 +126,3 @@ class Template(object):
 
 
 load = Template.load
-from_string = Template.from_string
