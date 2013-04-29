@@ -60,6 +60,7 @@ class Template(object):
                 del elem.attrib[attr]
 
         elem.set(IMAGE_HREF, href)
+        elem.set('preserveAspectRatio', 'none')
 
 
     def __str__(self):
