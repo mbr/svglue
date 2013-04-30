@@ -22,6 +22,7 @@ tpl.set_svg('yellow-box', file='Ghostscript_Tiger.svg')
 src = str(tpl)
 
 # write out the result as an SVG image and render it to pdf using cairosvg
-open('output.svg', 'w').write(src)
-from cairosvg.surface import PDFSurface
-PDFSurface.convert(src, write_to=open('output.pdf', 'w'))
+import cairosvg
+with open('output.pdf', 'w') as out, open('output.svg', 'w') as svgout:
+    svgout.write(src)
+    cairosvg.svg2pdf(bytestring=src, write_to=out)
