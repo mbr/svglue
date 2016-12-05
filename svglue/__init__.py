@@ -9,6 +9,7 @@ from lxml import etree
 SVG_NS = 'http://www.w3.org/2000/svg'
 RECT_TAG = '{http://www.w3.org/2000/svg}rect'
 TSPAN_TAG = '{http://www.w3.org/2000/svg}tspan'
+FLOWPARA_TAG = '{http://www.w3.org/2000/svg}flowPara'
 IMAGE_TAG = '{http://www.w3.org/2000/svg}image'
 USE_TAG = '{http://www.w3.org/2000/svg}use'
 HREF_ATTR = '{http://www.w3.org/1999/xlink}href'
@@ -34,6 +35,7 @@ class Template(object):
         self._doc = doc
         self._rect_subs = {}
         self._tspan_subs = {}
+	self._flowpara_subs = {}
         self._defs = None
 
         for elem in self._doc.xpath('//*'):
@@ -48,6 +50,8 @@ class Template(object):
                 self._rect_subs[tid] = elem
             elif elem.tag == TSPAN_TAG:
                 self._tspan_subs[tid] = elem
+            elif elem.tag == FLOWPARA_TAG:
+                self._flowpara_subs[tid] = elem 
             else:
                 raise TemplateParseError(
                     'Can only replace <rect> and <tspan> elements, found %s '
@@ -65,6 +69,9 @@ class Template(object):
 
     def set_text(self, tid, text):
         self._tspan_subs[tid].text = text
+
+    def set_flowtext(self, tid, text):
+        self._flowpara_subs[tid].text = text
 
     def set_image(self, tid, src=None, file=None, mimetype=None):
         if not (src == None) ^ (file == None):
