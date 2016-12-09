@@ -35,7 +35,7 @@ class Template(object):
         self._doc = doc
         self._rect_subs = {}
         self._tspan_subs = {}
-	self._flowpara_subs = {}
+        self._flowpara_subs = {}
         self._defs = None
 
         for elem in self._doc.xpath('//*'):
@@ -51,7 +51,7 @@ class Template(object):
             elif elem.tag == TSPAN_TAG:
                 self._tspan_subs[tid] = elem
             elif elem.tag == FLOWPARA_TAG:
-                self._flowpara_subs[tid] = elem 
+                self._flowpara_subs[tid] = elem
             else:
                 raise TemplateParseError(
                     'Can only replace <rect> and <tspan> elements, found %s '
