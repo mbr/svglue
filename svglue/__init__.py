@@ -5,7 +5,6 @@ from uuid import uuid4
 
 from lxml import etree
 
-
 SVG_NS = 'http://www.w3.org/2000/svg'
 RECT_TAG = '{http://www.w3.org/2000/svg}rect'
 TSPAN_TAG = '{http://www.w3.org/2000/svg}tspan'
@@ -55,8 +54,7 @@ class Template(object):
             else:
                 raise TemplateParseError(
                     'Can only replace <rect> and <tspan> elements, found %s '
-                    'instead' % (elem.tag,)
-                )
+                    'instead' % (elem.tag, ))
 
         defs = self._doc.xpath('/svg:svg/svg:defs', namespaces={'svg': SVG_NS})
 
@@ -64,8 +62,7 @@ class Template(object):
             self._defs = defs[0]
         else:
             self._defs = self._doc.getroot().insert(
-                0, etree.Element('{%s}defs' % SVG_NS)
-            )
+                0, etree.Element('{%s}defs' % SVG_NS))
 
     def set_text(self, tid, text):
         self._tspan_subs[tid].text = text
@@ -100,9 +97,8 @@ class Template(object):
                 if not hasattr(file, 'read'):
                     file = open(file, 'r')
                 src = file.read()
-            elem.set(HREF_ATTR, 'data:%s;base64,%s' % (
-                mimetype, src.encode('base64')
-            ))
+            elem.set(HREF_ATTR, 'data:%s;base64,%s' % (mimetype,
+                                                       src.encode('base64')))
 
     def set_svg(self, tid, src=None, file=None):
         if not (src == None) ^ (file == None):
