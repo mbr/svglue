@@ -95,10 +95,13 @@ class Template(object):
         else:
             if not src:
                 if not hasattr(file, 'read'):
-                    file = open(file, 'r')
-                src = file.read()
-            elem.set(HREF_ATTR, 'data:%s;base64,%s' % (mimetype,
-                                                       src.encode('base64')))
+                    file = open(file, 'rb')
+                
+                import base64
+                fc = file.read()
+                src = base64.encodestring(fc).decode('utf-8')
+
+            elem.set(HREF_ATTR, 'data:%s;base64,%s' % (mimetype, src))
 
     def set_svg(self, tid, src=None, file=None):
         if not (src == None) ^ (file == None):
