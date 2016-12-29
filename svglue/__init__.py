@@ -96,7 +96,7 @@ class Template(object):
             if not src:
                 if not hasattr(file, 'read'):
                     file = open(file, 'rb')
-                
+
                 import base64
                 fc = file.read()
                 src = base64.encodestring(fc).decode('utf-8')
@@ -129,5 +129,6 @@ class Template(object):
 
     def __str__(self):
         return etree.tostring(self._doc, encoding='utf8', method='xml')
+
 
 load = Template.load
