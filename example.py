@@ -3,7 +3,6 @@
 
 import svglue
 
-
 # load the template from a file
 tpl = svglue.load(file='sample-tpl.svg')
 
