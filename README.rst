@@ -68,6 +68,11 @@ a simple ``pip install svglue`` should suffice to install.
 API reference
 -------------
 
+Note that the main target for this library is Python3. The later
+versions of `cairosvg` do not compile on Python2 anymore for me.
+
+If you need Python2 support, restrict the version of `svglue` to `<=0.2.1`.
+
 svglue.load(src=None, file=None)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Loads a template, returning a ``Template``-object. The ``src``/``file`` load
