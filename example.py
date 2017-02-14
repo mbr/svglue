@@ -23,6 +23,6 @@ src = str(tpl)
 
 # write out the result as an SVG image and render it to pdf using cairosvg
 import cairosvg
-with open('output.pdf', 'w') as out, open('output.svg', 'w') as svgout:
+with open('output.pdf', 'wb') as out, open('output.svg', 'w') as svgout:
     svgout.write(src)
     cairosvg.svg2pdf(bytestring=src, write_to=out)

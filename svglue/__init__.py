@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+from base64 import b64encode
 from uuid import uuid4
 
 from lxml import etree
@@ -96,12 +97,10 @@ class Template(object):
             if not src:
                 if not hasattr(file, 'read'):
                     file = open(file, 'rb')
+                src = file.read()
 
-                import base64
-                fc = file.read()
-                src = base64.encodestring(fc).decode('utf-8')
-
-            elem.set(HREF_ATTR, 'data:%s;base64,%s' % (mimetype, src))
+            encoded = b64encode(src).decode('ascii')
+            elem.set(HREF_ATTR, 'data:%s;base64,%s' % (mimetype, encoded))
 
     def set_svg(self, tid, src=None, file=None):
         if not (src == None) ^ (file == None):
