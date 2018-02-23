@@ -21,4 +21,5 @@ setup(
     url='http://github.com/mbr/svglue',
     license='MIT',
     packages=find_packages(exclude=['test']),
-    install_requires=['lxml>=4.1.1'], )
+    install_requires=['lxml>=4.1.1'],
+)

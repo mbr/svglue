@@ -62,8 +62,9 @@ class Template(object):
         if defs:
             self._defs = defs[0]
         else:
-            self._defs = self._doc.getroot().insert(
-                0, etree.Element('{%s}defs' % SVG_NS))
+            self._defs = self._doc.getroot().insert(0,
+                                                    etree.Element(
+                                                        '{%s}defs' % SVG_NS))
 
     def set_text(self, tid, text):
         self._tspan_subs[tid].text = text
