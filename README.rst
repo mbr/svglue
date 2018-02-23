@@ -64,6 +64,7 @@ Installation
 ``svglue`` is `available via PyPI <https://pypi.python.org/pypi/svglue/>`_, so
 a simple ``pip install svglue`` should suffice to install.
 
+Please note that ``svglue`` is only testet with Python 3.3 upwards.
 
 API reference
 -------------
