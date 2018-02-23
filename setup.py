@@ -12,14 +12,13 @@ def read(fname):
 
 setup(
     name='svglue',
-    version='0.3.1.dev1',
+    version='0.4.0.dev1',
     description='Create templates using Inkscape, then fill them in (and '
-                'render them to PDF, if you like).',
+    'render them to PDF, if you like).',
     long_description=read('README.rst'),
     author='Marc Brinkmann',
     author_email='git@marcbrinkmann.de',
     url='http://github.com/mbr/svglue',
     license='MIT',
     packages=find_packages(exclude=['test']),
-    install_requires=['lxml'],
-)
+    install_requires=['lxml'], )
