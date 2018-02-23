@@ -127,7 +127,8 @@ class Template(object):
         elem.set(HREF_ATTR, '#' + doc_id)
 
     def __str__(self):
-        return etree.tostring(self._doc, encoding='utf8', method='xml')
+        return etree.tostring(
+            self._doc, encoding='utf8', method='xml').decode('utf8')
 
 
 load = Template.load
